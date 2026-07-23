@@ -232,7 +232,26 @@ http://<LAB-VM-PUBLIC-IP>:8081
 ---
 
 # ⚙ Jenkins Pipeline
+
+Docker Hub Credentials , Go To  :  Manage Jenkins -> Credentials
+
+ <img width="995" height="760" alt="image" src="https://github.com/user-attachments/assets/bf86c05b-a848-48d4-80d5-266b2a66c14a" />
+
+Select Add Credentials => Username with password 
+<img width="1605" height="419" alt="image" src="https://github.com/user-attachments/assets/c15501c8-e147-4708-b062-52859afa599d" />
+
+Store Docker Username and Personal Access Token PAT
+<img width="536" height="645" alt="image" src="https://github.com/user-attachments/assets/7610bd40-116c-4690-9f37-01eec289b001" />
+
+
+
+
+
+
+
+
  
+
 Create a new **Pipeline**. Go to Jenkins -> New Item -> Pipeline -> Give it a Name and NEXT 
 
 <img width="1107" height="270" alt="image" src="https://github.com/user-attachments/assets/eec92272-3271-4f34-9fcc-124e7f76c197" />
