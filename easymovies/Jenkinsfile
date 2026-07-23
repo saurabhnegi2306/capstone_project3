@@ -1,0 +1,130 @@
+pipeline {
+
+    agent {
+        label 'docker-worker'
+    }
+
+    environment {
+        IMAGE_NAME = "easymovies"
+        COMPOSE_PROJECT_NAME = "easymovies"
+    }
+
+    options {
+        timestamps()
+    }
+
+    stages {
+
+        stage('Checkout Source') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Environment Information') {
+            steps {
+                sh '''
+                    echo "===== Build Environment ====="
+                    hostname
+                    whoami
+                    pwd
+                    git --version
+                    docker --version
+                    docker compose version
+                '''
+            }
+        }
+        stage('Debug Workspace') {
+            steps {
+                sh '''
+                    echo "Current directory:"
+                    pwd
+
+                    echo "Workspace contents:"
+                    ls -la
+
+                    echo "Find Dockerfile:"
+                    find . -name Dockerfile
+
+                    echo "Find Jenkinsfile:"
+                    find . -name Jenkinsfile
+                '''
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                   cd easymovies
+                   docker build -t easymovies:${BUILD_NUMBER} -t easymovies:latest .
+                '''
+            }
+        }
+
+        stage('Run Unit Tests') {
+            steps {
+                sh '''
+                    docker run --rm -w /app -e PYTHONPATH=/app easymovies:${BUILD_NUMBER} pytest -v
+                '''
+            }
+        }
+
+        stage('Deploy Application') {
+            steps {
+                sh '''
+                    cd easymovies
+                    export IMAGE_TAG=${BUILD_NUMBER}
+                    export GIT_COMMIT=$(git rev-parse --short HEAD)
+                    export BUILD_URL=${BUILD_URL}
+                    export BUILD_NUMBER=${BUILD_NUMBER}
+                    export GIT_COMMIT=$(git rev-parse --short HEAD)
+                    export BUILD_USER=${BUILD_USER_ID:-jenkins}
+                    export BUILD_TIME="$(date)"
+                    docker compose up -d
+                '''
+            }
+        }
+
+        stage('Smoke Test') {
+            steps {
+                sh '''
+                    echo "Waiting for application..."
+                    sleep 10
+
+                    curl --fail http://localhost:8081
+
+                    echo "Smoke test passed."
+                '''
+            }
+        }
+
+        stage('Running Containers') {
+            steps {
+                sh '''
+                    docker ps
+                '''
+            }
+        }
+    }
+
+    post {
+
+        always {
+
+            echo "Cleaning up, if needed "
+
+            sh '''
+                # cd easymovies
+                # docker compose down
+                # docker image prune -f
+            '''
+        }
+
+        success {
+            echo "SUCCESS: EasyMovies deployed successfully."
+        }
+
+        failure {
+            echo "FAILED: Pipeline execution failed."
+        }
+    }
+}
