@@ -97,20 +97,38 @@ pipeline {
             }
         }
 
-        stage('Uplaod docker image if smoke test successfull') {
+        stage('Push Image to DockerHub.Update your repo name instead of easymovies in your Dockerhub Account') {
             steps {
-                sh '''
-                    echo "Pushing the application docker image to DockerHub/AWS ECR"
-                    docker tag easymovies:latest ....
-                    docker login 
-                    docker push <account>.dkr.ecr.region.amazonaws.com/easymovies:${BUILD_NUMBER}
-                    echo "Image Uplaoded successfully."
-                '''
-            }
-        }    
+                withCredentials([usernamePassword(
+                    credentialsId: 'DOCKER_PASS', ## Update with credentials ID
+                    usernameVariable: 'DOCKER_USER',  
+                    passwordVariable: 'DOCKER_PASS'  
+                )]) {
         
+                    sh '''
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker tag easymovies:${BUILD_NUMBER} $DOCKER_USER/easymovies:${BUILD_NUMBER}   
+                        docker push $DOCKER_USER/easymovies:${BUILD_NUMBER}
+                        docker logout
+                        echo "Image Uplaoded successfully to $DOCKER_USER/easymovies:${BUILD_NUMBER}"
+                    '''
+                }
+            }
+        }        
+        
+// withCredentials([[
+//     $class: 'AmazonWebServicesCredentialsBinding',
+//     credentialsId: 'aws-creds'
+// ]]) {
 
-        stage('Running Containers') {
+//     sh '''
+//         aws sts get-caller-identity
+//         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com
+//         docker tag easymovies:${BUILD_NUMBER}   123456789012.dkr.ecr.us-east-1.amazonaws.com/easymovies:${BUILD_NUMBER}
+//         docker push  123456789012.dkr.ecr.us-east-1.amazonaws.com/easymovies:${BUILD_NUMBER}
+//     '''
+// }
+        stage('Show Running Containers') {
             steps {
                 sh '''
                     docker ps
@@ -120,22 +138,12 @@ pipeline {
     }
 
     post {
-
         always {
-
-            echo "Cleaning up, if needed "
-
-            sh '''
-                # cd easymovies
-                # docker compose down
-                # docker image prune -f
-            '''
+            echo "Finishing the pipeline execution. "
         }
-
         success {
             echo "SUCCESS: EasyMovies deployed successfully."
         }
-
         failure {
             echo "FAILED: Pipeline execution failed."
         }
