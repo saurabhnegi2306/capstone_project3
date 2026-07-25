@@ -1,6 +1,6 @@
 🎬 EasyMovies
 
-> End-to-end CI/CD pipeline using **Ansible**, **AWS EC2**, **Jenkins**, **Docker**, **Docker Compose**, **GitHub Webhooks**, and **Python**.
+End-to-end CI/CD pipeline using **Ansible**, **AWS EC2**, **Jenkins**, **Docker**, **Docker Compose**, **GitHub Webhooks**, and **Python**.
 
 ---
 
