@@ -1,7 +1,7 @@
 🎬 EasyMovies
 
 This repo contains configuration to deploy End-to-end CI/CD pipeline using **Ansible**, **AWS EC2**, **Jenkins**, **Docker**, **Docker Compose**, **GitHub Webhooks**, **Docker Hub/ECR** and **Python**.
-Since Project-2 is kind of a subset of Project-3 so this repo is targetted for Project-3 and for Project-2 all you need to do is remove/skip the not-required part from Jenkinsfile and DockerHub setup in this project. 
+Since Project-2 is kind of a subset of `Project-3` so this repo is targetted for `Project-3` and for `Project-2` all you need to do is remove/skip the not-required part from `Jenkinsfile` and DockerHub setup in this project. 
 
 ---
 
@@ -66,7 +66,7 @@ Navigate to the AWS ECR
 
 <img width="647" height="330" alt="image" src="https://github.com/user-attachments/assets/637580af-0ac1-4c9e-8d9f-1d76bda7e652" />
 
-For testing purpose we can create and use a Public ECR Repo ( Anyone can pull images from this but only you can upload images via your AWS credentials ). If you create Private Repository ( Standard for Production setup) all users,application will need access to your Private ECR repo for pullign the image and you can control this access by Permission Policies. 
+For testing purpose we can create and use a Public ECR Repo ( Anyone can pull images from this but only you can upload images via your AWS credentials ). If you create Private Repository ( Standard for Production setup) all users,application will need access to your Private ECR repo for pulling the image and you can control this access by Permission Policies. 
 
 <img width="1442" height="309" alt="image" src="https://github.com/user-attachments/assets/85212310-58c0-402a-a503-9e69b7e3e096" />
 
@@ -117,7 +117,7 @@ and generates:
 
 <img width="1107" height="185" alt="image" src="https://github.com/user-attachments/assets/136e3949-05bf-464d-8d00-54fd848c98e8" />
 
-This step should auto update the inventory.ini file with new nodes IP details as well as vars.yml with new admin_password.
+This step should auto update the `inventory.ini` file with new nodes IP details as well as `vars.yml` with new `admin_password`.
 
 <img width="1108" height="124" alt="image" src="https://github.com/user-attachments/assets/4128127c-aaff-40c6-a245-44da00f14d9f" />
 
@@ -149,7 +149,7 @@ Login URL
 ```
 http://<CONTROLLER-NODE-PUBLIC-IP>:8080
 ```
-Enter Jenkins admin password ( get from previous step or fetch it from vars.yml ( which shoul dnow have updated password).
+Enter Jenkins admin password ( get from previous step or fetch it from `vars.yml` ( which shoul dnow have updated password).
 
 <img width="1107" height="424" alt="image" src="https://github.com/user-attachments/assets/62b8c1ed-0ba8-4c3d-b63e-d6ea8323c6e9" />
 
@@ -327,7 +327,7 @@ http://<JENKINS-CONTROLLER-NODE-PUBLIC-IP>:8080/github-webhook/
 
 # ✅ Verify CI/CD From Jenkins UI 
 
-Make a dummy change in README.md, Dockerfile or application code and push to GitHub.
+Make a dummy change in `README.md`, `Dockerfile` or application code and push to GitHub.
 
 Jenkins should automatically trigger a build else you can always run BUILD NOW to pull code from Repo and build->deploy.
 
