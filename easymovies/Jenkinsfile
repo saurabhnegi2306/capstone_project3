@@ -97,6 +97,19 @@ pipeline {
             }
         }
 
+        stage('Uplaod docker image if smoke test successfull') {
+            steps {
+                sh '''
+                    echo "Pushing the application docker image to DockerHub/AWS ECR"
+                    docker tag easymovies:latest ....
+                    docker login 
+                    docker push <account>.dkr.ecr.region.amazonaws.com/easymovies:${BUILD_NUMBER}
+                    echo "Image Uplaoded successfully."
+                '''
+            }
+        }    
+        
+
         stage('Running Containers') {
             steps {
                 sh '''
