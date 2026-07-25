@@ -1,5 +1,5 @@
 
-# Project 2 vs Project 3 - Architecture & Implementation Comparison
+# Capstone Project 2 vs Project 3 - Architecture & Implementation Comparison
 
 This document compares the two DevOps lab projects and highlights what can be **reused** from Project 2 and what needs to be **implemented** for Project 3.
 
@@ -61,12 +61,13 @@ Cleanup
 
 **Key Points**
 - Docker image is temporary.
-- Image is deployed locally.
-- No image repository is used.
+- Image is deployed locally and not pushed anywhere else.
+- No image repository is used ( Just like testing phase, where you , as a developer; are testing your applciation internally).
 
 ---
 
-## Project 3 – Continuous Integration + Continuous Delivery (CI/CD)
+## Project 3 – Continuous Integration + Continuous Delivery (CI/CD) 
+
 
 ```text
 Developer
@@ -106,9 +107,9 @@ Cleanup
 ```
 
 **Key Points**
-- Docker image becomes a reusable artifact.
-- Image is stored in a private registry.
-- Deployment can use the pushed image.
+- Docker image becomes a reusable artifact since image is stored in a private registry.
+- Deployment (helm charts etc) can use the pushed image.
+- Just like how it is supposed to be in a production environment.
 
 ---
 
@@ -134,8 +135,8 @@ Both projects use the same infrastructure:
 ```text
 AWS EC2
 │
-├── Jenkins Controller
-└── Jenkins Worker
+├── Jenkins Controller ( Primarily for hosting the Jenkins Server ).
+└── Jenkins Worker  ( Primarily for pipeline execution and docker image deployment ).
 ```
 
 ---
@@ -149,7 +150,7 @@ docker build
    ↓
 docker run
    ↓
-docker rm
+docker rm (manual)
 ```
 
 ## Project 3
@@ -165,7 +166,7 @@ docker push
    ↓
 docker run
    ↓
-docker rm
+docker rm (manual)
 ```
 
 ---
@@ -173,28 +174,25 @@ docker rm
 # Credentials
 
 ## Project 2
-
 - No registry credentials required.
-- Everything runs locally.
+- Everything runs locally either on local VM or worker node.
 
 ## Project 3
 
 Store credentials securely in Jenkins:
 
-- Docker Hub Username & Token
-- AWS ECR Credentials
-- Git Credentials (Private Repository)
+- Docker Hub Username & Token OR AWS ECR Credentials.
+- Git Credentials (If Using Private Repository in github, but you can use public repo instead just for testing purpose.)
 
 ---
 
 # New Tasks in Project 3
 
 - Create a private Docker repository (Docker Hub or AWS ECR)
-- Store credentials in Jenkins
-- Login to the registry
-- Tag the Docker image
-- Push the Docker image
-- (Recommended) Pull the image before deployment
+- Store credentials in Jenkins UI
+- Login to the registry   # Configure in Jenkinsfile
+- Tag the Docker image    # Configure in Jenkinsfile
+- Push the Docker image   # Configure in Jenkinsfile
 
 ---
 
