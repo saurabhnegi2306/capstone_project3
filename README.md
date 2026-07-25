@@ -1,4 +1,4 @@
-<img width="1190" height="72" alt="image" src="https://github.com/user-attachments/assets/5dd3d657-3768-4895-b79b-50e27e04828d" /># 🎬 EasyMovies
+🎬 EasyMovies
 
 > End-to-end CI/CD pipeline using **Ansible**, **AWS EC2**, **Jenkins**, **Docker**, **Docker Compose**, **GitHub Webhooks**, and **Python**.
 
@@ -246,17 +246,10 @@ Docker Hub Credentials , Go To  :  Manage Jenkins -> Credentials
 Select Add Credentials => Username with password 
 <img width="1605" height="419" alt="image" src="https://github.com/user-attachments/assets/c15501c8-e147-4708-b062-52859afa599d" />
 
-Store Docker Username and Personal Access Token PAT
-<img width="536" height="645" alt="image" src="https://github.com/user-attachments/assets/7610bd40-116c-4690-9f37-01eec289b001" />
+Store Docker Username and Personal Access Token PAT. Note down the Credentials ID D, this will be needed in Jenkisfile while using this credential. 
+<img width="553" height="413" alt="image" src="https://github.com/user-attachments/assets/f685311f-eb88-4ee6-9736-e02f5bafda34" />
 
 
-
-
-
-
-
-
- 
 
 Create a new **Pipeline**. Go to Jenkins -> New Item -> Pipeline -> Give it a Name and NEXT 
 
