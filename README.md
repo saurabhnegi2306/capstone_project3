@@ -69,13 +69,11 @@ This creates:
   <img width="1190" height="72" alt="image" src="https://github.com/user-attachments/assets/4dd2f867-1fb3-415a-93a2-0dc5a5fb703b" />
   <img width="1240" height="60" alt="image" src="https://github.com/user-attachments/assets/a23b0d68-729b-4944-bb94-15a96caf0cfe" />
 
-- Jenkins Controller Node
-- Jenkins Worker Node
+- Jenkins Controller Node & Jenkins Worker/Agent Node
   <img width="1297" height="89" alt="image" src="https://github.com/user-attachments/assets/56752051-ccf2-4eaf-b367-28c236b92443" />
 
 - Security Group allowing:
-  - SSH (22)
-  - Port Range (5000-32767) covering jenkins port 8080 and all nodeports ( 30000 to 32767 ) 
+  - SSH (22)  & Port Range (5000-32767) covering jenkins port 8080 and all nodeports ( 30000 to 32767 ) 
   <img width="1445" height="163" alt="image" src="https://github.com/user-attachments/assets/fc9798cb-14ae-4866-9992-f43c2193e7c0" />
 
 It also updates:
@@ -255,8 +253,8 @@ Select Add Credentials => Username with password
 <img width="1605" height="419" alt="image" src="https://github.com/user-attachments/assets/c15501c8-e147-4708-b062-52859afa599d" />
 
 Store Docker Username and Personal Access Token PAT. Note down the Credentials ID D, this will be needed in Jenkisfile while using this credential. 
-<img width="553" height="413" alt="image" src="https://github.com/user-attachments/assets/f685311f-eb88-4ee6-9736-e02f5bafda34" />
 
+<img width="553" height="413" alt="image" src="https://github.com/user-attachments/assets/f685311f-eb88-4ee6-9736-e02f5bafda34" />
 
 
 Create a new **Pipeline**. Go to Jenkins -> New Item -> Pipeline -> Give it a Name and NEXT 
@@ -347,10 +345,10 @@ You can see the build details at the bottom of the website, which should change 
 
 Whenever code is pushed to GitHub:
 
-- GitHub triggers Jenkins
-- Jenkins pulls latest code
-- Builds Docker image
-- Runs Pytest
-- Deploys to Worker Node
-- Application is automatically updated
+- GitHub code change triggers Jenkins via webhook.
+- Jenkins pulls latest code from github repo.
+- Pipeline Builds Docker image on Worker/agent node.
+- Pipeline Runs Pytest inside container to test the applciation.
+- Pipeline Deploys the applciation image to Worker/agent Node.
+- Updated applciation docker image is pushed to DockerHub if smoke test passes.
 
