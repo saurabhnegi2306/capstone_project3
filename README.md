@@ -48,6 +48,14 @@ ansible-galaxy collection install -r requirements.yml
 
 ---
 
+Create the Target DockerHub/AWS ECR Repo where docker image will be pushed:
+
+Sign into Dockerhub -> Create Repo -> provide repo name and create public repo ( just for the testing)
+
+<img width="1011" height="555" alt="image" src="https://github.com/user-attachments/assets/4542d4b5-0ec5-4e04-a394-70d086150b17" />
+
+Note down the repo url ```ACCOUNT_NAME/REPO_NAME``` which will be needed during docker tag/push command.
+
 # 🚀 Step 1 - Provision Jenkins Infrastructure ( To Be Run on Lab/local VM ) 
 
 Run:
