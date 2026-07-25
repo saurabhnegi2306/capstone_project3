@@ -100,7 +100,7 @@ pipeline {
         stage('Push Image to DockerHub.Update your repo name instead of easymovies in your Dockerhub Account') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'DOCKER_PASS', ## Update with credentials ID
+                    credentialsId: 'DOCKER_PASS',    //Update with credentials ID
                     usernameVariable: 'DOCKER_USER',  
                     passwordVariable: 'DOCKER_PASS'  
                 )]) {
