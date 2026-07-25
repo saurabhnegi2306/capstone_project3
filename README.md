@@ -1,7 +1,7 @@
 🎬 EasyMovies
 
-End-to-end CI/CD pipeline using **Ansible**, **AWS EC2**, **Jenkins**, **Docker**, **Docker Compose**, **GitHub Webhooks**, **Docker Hub/ECR** and **Python**.
-Project-2 is kind of a subset of Project-3 so this repo is targetted for Project-3 and all you need to do is remove/skip the not-required part from Jenkinsfile and DockerHub setup. 
+This repo contains configuration to deploy End-to-end CI/CD pipeline using **Ansible**, **AWS EC2**, **Jenkins**, **Docker**, **Docker Compose**, **GitHub Webhooks**, **Docker Hub/ECR** and **Python**.
+Since Project-2 is kind of a subset of Project-3 so this repo is targetted for Project-3 and for Project-2 all you need to do is remove/skip the not-required part from Jenkinsfile and DockerHub setup in this project. 
 
 ---
 
@@ -51,11 +51,39 @@ ansible-galaxy collection install -r requirements.yml
 
 Create the Target DockerHub/AWS ECR Repo where docker image will be pushed:
 
+a) For DockerHub : 
+
 Sign into Dockerhub -> Create Repo -> provide repo name and create public repo ( just for the testing)
 
 <img width="1011" height="555" alt="image" src="https://github.com/user-attachments/assets/4542d4b5-0ec5-4e04-a394-70d086150b17" />
+<img width="647" height="330" alt="image" src="https://github.com/user-attachments/assets/3133eccd-bd78-4e97-a192-c7cb2938efcb" />
+
+
+b) For AWS ECR ( Elastic Container Registry, AWS Version of DockerHub ) : 
+
+Navigate to the AWS ECR
+<img width="850" height="212" alt="image" src="https://github.com/user-attachments/assets/e4800f93-ee2e-4a4f-8a6e-9d250350e672" />
+
+<img width="647" height="330" alt="image" src="https://github.com/user-attachments/assets/637580af-0ac1-4c9e-8d9f-1d76bda7e652" />
+
+For testing purpose we can create and use a Public ECR Repo ( Anyone can pull images from this but only you can upload images via your AWS credentials ). If you create Private Repository ( Standard for Production setup) all users,application will need access to your Private ECR repo for pullign the image and you can control this access by Permission Policies. 
+
+<img width="1442" height="309" alt="image" src="https://github.com/user-attachments/assets/85212310-58c0-402a-a503-9e69b7e3e096" />
+
+
+Provide the required reponame, which you should use during docker pull/tag and push commands . 
+
+<img width="1050" height="494" alt="image" src="https://github.com/user-attachments/assets/61ae847c-5549-4639-bd68-e0a25bf7aae0" />
+
 
 Note down the repo url ```ACCOUNT_NAME/REPO_NAME``` which will be needed during docker tag/push command.
+<img width="1330" height="50" alt="image" src="https://github.com/user-attachments/assets/8a44f1ae-95aa-4117-88d4-cd2b10347adb" />
+
+Click onthe ECR Repo => View Push Commands. These commands are reference commands for you to tag a local image and push to this repo.
+
+<img width="1641" height="329" alt="image" src="https://github.com/user-attachments/assets/bc368e70-f979-415c-9614-946156449f20" />
+<img width="831" height="585" alt="image" src="https://github.com/user-attachments/assets/73181b32-65eb-4442-8f44-45424ac7ed76" />
+
 
 # 🚀 Step 1 - Provision Jenkins Infrastructure ( To Be Run on Lab/local VM ) 
 
@@ -266,7 +294,12 @@ Enable GitHub Project and provide your public repository URI.
 
 <img width="1107" height="642" alt="image" src="https://github.com/user-attachments/assets/ba20b7ee-f6be-4636-a2fb-f33316698843" />
 
-Enable **GitHub hook trigger for GITScm Polling** so that Jenkins pipeline is triggered as soon as you change/commit anything in your repo to create a CICD setup.
+This is only for documentation purpose, it allows anyone to redirect to gitHub repo when they click on GitHUb link on pipeline : 
+
+<img width="311" height="392" alt="image" src="https://github.com/user-attachments/assets/aca94699-7e20-476b-807a-8a70763a2ae5" />
+
+
+MUST Enable **GitHub hook trigger for GITScm Polling** so that Jenkins pipeline is triggered as soon as you change/commit anything in your repo to create a CICD setup.
 
 <img width="1107" height="146" alt="image" src="https://github.com/user-attachments/assets/6d62b327-c956-40dc-8ac3-84f52b9a402c" />
 
