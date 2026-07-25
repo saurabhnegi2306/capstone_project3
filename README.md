@@ -1,3 +1,13 @@
+![AWS](https://img.shields.io/badge/AWS-EC2-orange)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-v1.30-blue)
+![Docker](https://img.shields.io/badge/Docker-Container-blue)
+![Ansible](https://img.shields.io/badge/Ansible-Automation-red)
+![Jenkins](https://img.shields.io/badge/Jenkins-Pipeline-blue)
+![Python](https://img.shields.io/badge/Python-3.x-green)
+![License](https://img.shields.io/badge/License-Educational-success)
+
+---
+
 🎬 EasyMovies
 
 This repo contains configuration to deploy End-to-end CI/CD pipeline using **Ansible**, **AWS EC2**, **Jenkins**, **Docker**, **Docker Compose**, **GitHub Webhooks**, **Docker Hub/ECR** and **Python**.
