@@ -77,7 +77,7 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{ igw.gateway_id }}"
           
-    - name: Create restricted CI security group in the provided $vpc_id VPC
+    - name: Create restricted CI security group in the provided {{ jenkins_vpc.vpc.id }}
       amazon.aws.ec2_security_group:
         name: jenkins-ci-sg
         description: Access for Jenkins controller and build worker
@@ -128,7 +128,7 @@
       ansible.builtin.pause:
         seconds: 15        
 
-    - name: Launch Jenkins controller
+    - name: Launch Jenkins controller EC2 instance
       amazon.aws.ec2_instance:
         name: jenkins-ci-controller
         region: "{{ aws_region }}"
@@ -145,7 +145,7 @@
       register: controller_ec2
 
         
-    - name: Launch Docker build worker
+    - name: Launch Docker build worker EC2 instance
       amazon.aws.ec2_instance:
         name: jenkins-ci-worker
         region: "{{ aws_region }}"
@@ -167,14 +167,14 @@
     - set_fact:
         jenkins_worker_ip: "{{ worker_ec2.instances[0].public_ip_address }}"
 
-    - name: Wait for SSH on Jenkins controller
+    - name: Wait for SSH on Jenkins controller EC2 instance
       ansible.builtin.wait_for:
         host: "{{ controller_ec2.instances[0].public_ip_address }}"
         port: 22
         delay: 10
         timeout: 300
 
-    - name: Wait for SSH on Docker worker
+    - name: Wait for SSH on Docker worker EC2 instance
       ansible.builtin.wait_for:
         host: "{{ worker_ec2.instances[0].public_ip_address }}"
         port: 22
