@@ -1,4 +1,4 @@
-# 🎬 EasyMovies
+<img width="1190" height="72" alt="image" src="https://github.com/user-attachments/assets/5dd3d657-3768-4895-b79b-50e27e04828d" /># 🎬 EasyMovies
 
 > End-to-end CI/CD pipeline using **Ansible**, **AWS EC2**, **Jenkins**, **Docker**, **Docker Compose**, **GitHub Webhooks**, and **Python**.
 
@@ -57,12 +57,18 @@ ansible-playbook -i inventory.ini 1.provision.yml
 ```
 
 This creates:
+- New VPC, public subnet in provided region
+  <img width="1190" height="72" alt="image" src="https://github.com/user-attachments/assets/4dd2f867-1fb3-415a-93a2-0dc5a5fb703b" />
+  <img width="1240" height="60" alt="image" src="https://github.com/user-attachments/assets/a23b0d68-729b-4944-bb94-15a96caf0cfe" />
 
 - Jenkins Controller Node
 - Jenkins Worker Node
+  <img width="1297" height="89" alt="image" src="https://github.com/user-attachments/assets/56752051-ccf2-4eaf-b367-28c236b92443" />
+
 - Security Group allowing:
   - SSH (22)
   - Port Range (5000-32767) covering jenkins port 8080 and all nodeports ( 30000 to 32767 ) 
+  <img width="1445" height="163" alt="image" src="https://github.com/user-attachments/assets/fc9798cb-14ae-4866-9992-f43c2193e7c0" />
 
 It also updates:
 
