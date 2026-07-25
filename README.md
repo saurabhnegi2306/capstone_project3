@@ -301,6 +301,10 @@ Jenkins should automatically trigger a build else you can always run BUILD NOW t
 
 <img width="564" height="1020" alt="image" src="https://github.com/user-attachments/assets/85d2e8e4-80be-4a1c-9e7c-799435947ece" />
 
+In the build log, you should see smoke test passing and image being tagged and then finally pushed to your github repo after docker login ( if credentials are correct )
+
+<img width="688" height="409" alt="image" src="https://github.com/user-attachments/assets/32da2826-1064-45b4-bfe1-01998eea572b" />
+
 So the whole Pipeline Flow is :
 
 ```text
@@ -319,6 +323,8 @@ Pytest
 Deploy to Worker
       ↓
 Application ready @ port 8081
+      ↓
+Image pushed to DockerHub/ECR Repo
 ```
 
 Application:
