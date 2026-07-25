@@ -305,6 +305,11 @@ In the build log, you should see smoke test passing and image being tagged and t
 
 <img width="688" height="409" alt="image" src="https://github.com/user-attachments/assets/32da2826-1064-45b4-bfe1-01998eea572b" />
 
+Verify in the DockerHub repo if new images are there ( tag will be the build no of the respective pipeline run ) : 
+
+<img width="942" height="540" alt="image" src="https://github.com/user-attachments/assets/276adc89-f04e-41f0-a8d2-7556f681a778" />
+
+
 So the whole Pipeline Flow is :
 
 ```text
