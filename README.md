@@ -161,18 +161,20 @@ http://<CONTROLLER-NODE-PUBLIC-IP>:8080
 ```
 Enter Jenkins admin password ( get from previous step or fetch it from `vars.yml` ( which shoul dnow have updated password).
 
-<img width="1107" height="424" alt="image" src="https://github.com/user-attachments/assets/62b8c1ed-0ba8-4c3d-b63e-d6ea8323c6e9" />
+<img width="825" height="350" alt="image" src="https://github.com/user-attachments/assets/d79de9f6-b9b7-4367-b5a4-c8c9b53e787f" />
+
 
 Install Suggested Plugins.
 
-<img width="1107" height="570" alt="image" src="https://github.com/user-attachments/assets/a18c8d4e-c740-4969-99d6-9a085aae0db7" />
+<img width="802" height="481" alt="image" src="https://github.com/user-attachments/assets/cd1cec05-1fe8-4e49-9b23-b37204369232" />
 
 Create a user or continue with admin.
 
-<img width="1107" height="916" alt="image" src="https://github.com/user-attachments/assets/0656bacd-4b96-4127-9f0f-e01c8b07aebc" />
+<img width="907" height="873" alt="image" src="https://github.com/user-attachments/assets/4b3895cc-9edb-417a-8677-24689ef7a7f2" />
 
-<img width="1107" height="407" alt="image" src="https://github.com/user-attachments/assets/c4f06743-16fd-4b72-9875-89e22b184096" />
 Jenkins Server is now up and running. 
+
+<img width="625" height="274" alt="image" src="https://github.com/user-attachments/assets/942770e4-3bd4-446d-ac8d-fcc83e7bda37" />
 ---
 
 # 🔌 Step 2 - Install Jenkins Plugins ( Run on Lab/local VM )
@@ -202,11 +204,12 @@ This playbook will install below Plugins. Jenkins has a lot of supported plugins
 ansible-playbook -i inventory.ini 3.configure_worker.yml
 ```
 
-<img width="1107" height="496" alt="image" src="https://github.com/user-attachments/assets/42fb64eb-2796-41bd-b2a8-6558d2077867" />
+<img width="934" height="172" alt="image" src="https://github.com/user-attachments/assets/659b7bc2-4a47-4e81-8b0f-65e7fa677ff9" />
+
 
 Verify under **Manage Jenkins → Nodes**.
 
-<img width="1107" height="217" alt="image" src="https://github.com/user-attachments/assets/08a2bf60-7a40-4edb-9a55-bdc3d3ab4316" />
+<img width="1574" height="163" alt="image" src="https://github.com/user-attachments/assets/132228c5-a888-4c6a-a16f-7ba3b0246b75" />
 
 ---
 
@@ -223,11 +226,10 @@ Browse:
 http://<LAB-VM-PUBLIC-IP>:8081
 ```
 
-<img width="1107" height="497" alt="image" src="https://github.com/user-attachments/assets/bd6c644e-48fc-404e-88de-9f88cef1568c" />
+<img width="953" height="177" alt="image" src="https://github.com/user-attachments/assets/c0c85970-c153-4d2f-bded-eb7fb08238b4" />
 
-<img width="1107" height="431" alt="image" src="https://github.com/user-attachments/assets/d47d888a-c4fb-4705-8267-a32901277eeb" />
+<img width="903" height="425" alt="image" src="https://github.com/user-attachments/assets/adaa4a57-fa76-4f43-8519-35f4b3a97b8c" />
 
-<img width="784" height="408" alt="image" src="https://github.com/user-attachments/assets/6e1808e6-a30c-4300-a1fa-50261764f71d" />
 
 Stop using CTRL+C.
 
@@ -240,18 +242,22 @@ Build:
 ```bash
 docker build -t easymovies:v1 .
 ```
+<img width="977" height="274" alt="image" src="https://github.com/user-attachments/assets/ae0636da-2340-4e7b-9640-f6e18481789f" />
 
-<img width="1107" height="384" alt="image" src="https://github.com/user-attachments/assets/2abc0ab4-d735-4815-8f61-fea398367a29" />
-
-Run:
+Run a new container using newly built image:
 
 ```bash
 docker run -d --name easymovies -p 8081:8081 easymovies:v1
 ```
 
-<img width="784" height="408" alt="image" src="https://github.com/user-attachments/assets/de8a6064-8d30-4311-b359-a318408aa38e" />
+<img width="992" height="62" alt="image" src="https://github.com/user-attachments/assets/146099b0-811c-42aa-8173-990ce335b3d2" />
 
-Remove:
+Access the UI Again on 
+```
+http://<LAB-VM-PUBLIC-IP>:8081
+```
+
+Stop & Remove the container:
 
 ```bash
 docker stop easymovies && docker rm easymovies
@@ -266,6 +272,7 @@ docker rm -f easymovies
 ---
 
 # 🐳 Docker Compose ( Run on Lab/local VM )
+
 
 ```bash
 docker compose up -d
