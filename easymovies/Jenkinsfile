@@ -115,6 +115,16 @@ pipeline {
                 }
             }
         }        
+
+        stage('Remove Application') {
+            steps {
+                sh '''
+                    sleep 100
+                    cd easymovies
+                    docker compose down -d
+                '''
+            }
+        }
         
 // withCredentials([[
 //     $class: 'AmazonWebServicesCredentialsBinding',
