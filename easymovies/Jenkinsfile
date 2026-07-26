@@ -119,9 +119,9 @@ pipeline {
         stage('Remove Application') {
             steps {
                 sh '''
-                    sleep 100
+                    sleep 50
                     cd easymovies
-                    docker compose down -d
+                    docker compose down
                 '''
             }
         }
