@@ -31,7 +31,7 @@ Since Project-2 is kind of a subset of `Project-3` so this repo is targetted for
 
 ---
 
-# 🛠 Prerequisites ( To Be Run on Lab/local VM ) 
+# 🛠 Prerequisites ( Run on Lab/local VM ) 
 
 Install boto3:
 
@@ -51,7 +51,7 @@ Verify credentials:
 aws sts get-caller-identity
 ```
 
-Install Ansible collections:
+Install Ansible collections dependency in ```capstone3/ansible/requirements.yml``` :
 
 ```bash
 ansible-galaxy collection install -r requirements.yml
@@ -95,7 +95,7 @@ Click onthe ECR Repo => View Push Commands. These commands are reference command
 <img width="831" height="585" alt="image" src="https://github.com/user-attachments/assets/73181b32-65eb-4442-8f44-45424ac7ed76" />
 
 
-# 🚀 Step 1 - Provision Jenkins Infrastructure ( To Be Run on Lab/local VM ) 
+# 🚀 Step 1 - Provision Jenkins Infrastructure ( Run on Lab/local VM ) 
 
 Run:
 
@@ -129,13 +129,13 @@ and generates:
 
 This step should auto update the `inventory.ini` file with new nodes IP details as well as `vars.yml` with new `admin_password`.
 
-<img width="1108" height="124" alt="image" src="https://github.com/user-attachments/assets/4128127c-aaff-40c6-a245-44da00f14d9f" />
+<img width="1001" height="104" alt="image" src="https://github.com/user-attachments/assets/681413e0-f008-4424-9200-e076739ef851" />
 
-<img width="559" height="328" alt="image" src="https://github.com/user-attachments/assets/03b1829b-e460-4966-94ed-f14bb725e793" />
+<img width="512" height="297" alt="image" src="https://github.com/user-attachments/assets/520c31fc-7de5-4588-ad4f-e8da809cd372" />
 
 ---
 
-# 🔑 Access Jenkins Nodes via CLI ( From Local Laptop Web Browser )
+# 🔑 Access Jenkins Nodes via CLI ( Run on Lab/local VM )
 
 SSH to Jenkins Controller Node:
 
@@ -146,7 +146,7 @@ systemctl status jenkins                                    # To check jenkins s
 exit
 ```
 
-SSH to Jenkins Worker Node ( If Needed ) :
+SSH to Jenkins Worker Node ( If Needed Run on Lab/local VM ) :
 
 ```bash
 ssh -i ~/.ssh/jenkins-ci-generated-key ubuntu@<WORKER-NODE-PUBLIC-IP>
@@ -175,7 +175,7 @@ Create a user or continue with admin.
 Jenkins Server is now up and running. 
 ---
 
-# 🔌 Step 2 - Install Jenkins Plugins ( To Be Run on Lab/local VM )
+# 🔌 Step 2 - Install Jenkins Plugins ( Run on Lab/local VM )
 
 ```bash
 ansible-playbook -i inventory.ini 2.install_plugins.yml
@@ -196,7 +196,7 @@ This playbook will install below Plugins. Jenkins has a lot of supported plugins
 
 ---
 
-# 👷 Step 3 - Configure Jenkins Worker ( To Be Run on Lab/local VM )
+# 👷 Step 3 - Configure Jenkins Worker ( Run on Lab/local VM )
 
 ```bash
 ansible-playbook -i inventory.ini 3.configure_worker.yml
@@ -210,7 +210,7 @@ Verify under **Manage Jenkins → Nodes**.
 
 ---
 
-# 🖥 Run Application Locally ( To Be Run on Lab/local VM )
+# 🖥 Run Application Locally ( Run on Lab/local VM )
 
 ```bash
 pip install -r requirements.txt
@@ -233,7 +233,7 @@ Stop using CTRL+C.
 
 ---
 
-# 🐳 Docker Deployment ( To Be Run on Lab/local VM )
+# 🐳 Docker Deployment ( Run on Lab/local VM )
 
 Build:
 
@@ -265,7 +265,7 @@ docker rm -f easymovies
 
 ---
 
-# 🐳 Docker Compose ( To Be Run on Lab/local VM )
+# 🐳 Docker Compose ( Run on Lab/local VM )
 
 ```bash
 docker compose up -d
