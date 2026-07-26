@@ -8,7 +8,7 @@
 
 ---
 
-🎬 EasyMovies
+🎬 EasyMovies      
 
 This repo contains configuration to deploy End-to-end CI/CD pipeline using **Ansible**, **AWS EC2**, **Jenkins**, **Docker**, **Docker Compose**, **GitHub Webhooks**, **Docker Hub/ECR** and **Python**.
 Since Project-2 is kind of a subset of `Project-3` so this repo is targetted for `Project-3` and for `Project-2` all you need to do is remove/skip the not-required part from `Jenkinsfile` and DockerHub setup in this project. 
