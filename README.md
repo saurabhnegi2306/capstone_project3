@@ -27,7 +27,7 @@ Since Project-2 is kind of a subset of `Project-3` so this repo is targetted for
 - Run with Docker Compose
 - Configure Jenkins Pipeline
 - Configure GitHub Webhook
-- Verify CI/CD Pipeline
+- Verify CI/CD Pipeline Execution
 
 ---
 
