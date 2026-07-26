@@ -393,7 +393,7 @@ Deploy to Worker
       ↓
 Application ready @ port 8081
       ↓
-Image pushed to DockerHub/ECR Repo
+Image pushed to DockerHub/ECR Repo 
 ```
 
 Application:
