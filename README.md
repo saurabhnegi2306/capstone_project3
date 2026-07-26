@@ -273,19 +273,34 @@ docker rm -f easymovies
 
 # 🐳 Docker Compose ( Run on Lab/local VM )
 
+Set the ENV variables required for docker compose : 
+```bash
+export IMAGE_TAG=v1
+export BUILD_NUMBER=v1
+export GIT_COMMIT=$(git rev-parse --short HEAD)
+export GIT_BRANCH=$(git branch --show-current)
+export BUILD_URL=local
+export BUILD_USER=labuser
+export BUILD_TIME="$(date)"
+```
 
+Run the docker compose up : 
 ```bash
 docker compose up -d
 ```
 
-<img width="1107" height="99" alt="image" src="https://github.com/user-attachments/assets/70a3fcb2-a5f7-419b-9a8c-cf38da02509b" />
+<img width="780" height="185" alt="image" src="https://github.com/user-attachments/assets/3018959b-4ad6-471f-b647-3e4b5e58ee42" />
+
 
 Application is again available @
 ```bash 
 http://<LAB-VM-PUBLIC-IP>:8081 
 ```
 
-<img width="784" height="408" alt="image" src="https://github.com/user-attachments/assets/de8a6064-8d30-4311-b359-a318408aa38e" />
+Notice the values of ENV being displayed correctly at bottom of the page : 
+
+<img width="966" height="469" alt="image" src="https://github.com/user-attachments/assets/bf826897-8460-4493-87a6-3150231f6e92" />
+
 
 ---
 
@@ -305,11 +320,12 @@ Store Docker Username and Personal Access Token PAT. Note down the Credentials I
 
 Create a new **Pipeline**. Go to Jenkins -> New Item -> Pipeline -> Give it a Name and NEXT 
 
-<img width="1107" height="270" alt="image" src="https://github.com/user-attachments/assets/eec92272-3271-4f34-9fcc-124e7f76c197" />
+<img width="1463" height="365" alt="image" src="https://github.com/user-attachments/assets/b3178d83-bf4f-477b-9fdf-9e5fb5f32dc7" />
 
 Enable GitHub Project and provide your public repository URI.
 
-<img width="1107" height="642" alt="image" src="https://github.com/user-attachments/assets/ba20b7ee-f6be-4636-a2fb-f33316698843" />
+<img width="779" height="269" alt="image" src="https://github.com/user-attachments/assets/1f793ccc-8e3f-4bbe-a02d-01fa79c751f4" />
+
 
 This is only for documentation purpose, it allows anyone to redirect to gitHub repo when they click on GitHUb link on pipeline : 
 
@@ -318,11 +334,11 @@ This is only for documentation purpose, it allows anyone to redirect to gitHub r
 
 MUST Enable **GitHub hook trigger for GITScm Polling** so that Jenkins pipeline is triggered as soon as you change/commit anything in your repo to create a CICD setup.
 
-<img width="1107" height="146" alt="image" src="https://github.com/user-attachments/assets/6d62b327-c956-40dc-8ac3-84f52b9a402c" />
+<img width="668" height="237" alt="image" src="https://github.com/user-attachments/assets/f2080411-df97-4efa-ab48-d2dcd86513b4" />
 
 Configure SCM and ensure to choose correct branch ( main or master or dev ) and also relative path of Jenkinsfile as compare to root directory of your repo.
 
-<img width="1107" height="741" alt="image" src="https://github.com/user-attachments/assets/83fd3cb3-55cf-47ea-a294-56c1f82d017d" />
+<img width="823" height="868" alt="image" src="https://github.com/user-attachments/assets/6c437489-0d77-43ef-b421-23ac3cc4fd87" />
 
 ---
 
@@ -330,7 +346,7 @@ Configure SCM and ensure to choose correct branch ( main or master or dev ) and 
 
 navigate to GitHub Repo → Settings → Webhooks → Add Webhook
 
-<img width="1107" height="198" alt="image" src="https://github.com/user-attachments/assets/44ebf94a-8d38-4472-a7fb-c1f5078d34e9" />
+<img width="1164" height="415" alt="image" src="https://github.com/user-attachments/assets/278c8731-9985-4c2b-a797-439872cea16c" />
 
 Payload needs to provide in below format. Also choose SSL Verification as DISABLE ( not recommended for production but OK for testing) :
 
@@ -338,7 +354,7 @@ Payload needs to provide in below format. Also choose SSL Verification as DISABL
 http://<JENKINS-CONTROLLER-NODE-PUBLIC-IP>:8080/github-webhook/
 ```
 
-<img width="1107" height="892" alt="image" src="https://github.com/user-attachments/assets/64faf8b3-e34b-45f6-ba7b-ea6b35a00164" />
+<img width="760" height="697" alt="image" src="https://github.com/user-attachments/assets/ff5454de-f79e-419b-b15b-09114ed8c190" />
 
 ---
 
@@ -348,7 +364,6 @@ Make a dummy change in `README.md`, `Dockerfile` or application code and push to
 
 Jenkins should automatically trigger a build else you can always run BUILD NOW to pull code from Repo and build->deploy.
 
-<img width="564" height="1020" alt="image" src="https://github.com/user-attachments/assets/85d2e8e4-80be-4a1c-9e7c-799435947ece" />
 
 In the build log, you should see smoke test passing and image being tagged and then finally pushed to your github repo after docker login ( if credentials are correct )
 
